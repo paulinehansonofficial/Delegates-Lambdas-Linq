@@ -88,7 +88,9 @@ namespace PersonHandler_Tests {
         public void TestGetAmountBornOnEachDate() {
             PersonHandler ph = new PersonHandler(data);
 
-            ph.GetAmountBornOnEachDate();            
+            var result = ph.GetAmountBornOnEachDate();
+            Assert.AreEqual("11/04/2017 12:00:00 AM\t2", result.First());
+            Assert.AreEqual("8/05/2017 12:00:00 AM	1", result[23]);
         }
     }
 }

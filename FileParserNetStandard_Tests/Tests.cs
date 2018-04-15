@@ -97,14 +97,12 @@ namespace FileParserNetStandard_Tests {
         }
         
         [Test]
-        public void AddQuotesTest() {
-            var list = _dp.AddQuotes(_data);
+        public void StripQuotesTest() {
+            var list = _dp.StripQuotes(_data);
 
-            Assert.AreEqual("\"4\"", list[3][0]); 
-            Assert.AreEqual("\"Bill\"", list[3][1]);
-            Assert.AreEqual("\"Holmes\"", list[3][2]);
-            
-            
+            Assert.AreEqual("6", list[5][0]); 
+            Assert.AreEqual("Ophelia", list[5][1]);
+            Assert.AreEqual("Turing", list[5][2]);   
         }
     }
 }
