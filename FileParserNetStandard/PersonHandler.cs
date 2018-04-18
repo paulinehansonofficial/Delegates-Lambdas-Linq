@@ -17,7 +17,7 @@ namespace FileParserNetStandard {
         /// </summary>
         /// <param name="people"></param>
         public PersonHandler(List<List<string>> people) {
-
+        
         }
 
         /// <summary>

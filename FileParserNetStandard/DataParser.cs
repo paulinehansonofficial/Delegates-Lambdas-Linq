@@ -16,16 +16,6 @@ namespace FileParserNetStandard {
         }
 
         /// <summary>
-        /// Adds quotes to each data value
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public List<List<string>> AddQuotes(List<List<string>> data) {
- 
-            return data;
-        }
-
-        /// <summary>
         /// Strips quotes from beginning and end of each data value
         /// </summary>
         /// <param name="data"></param>
