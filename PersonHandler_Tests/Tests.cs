@@ -38,8 +38,7 @@ namespace PersonHandler_Tests {
             var oldest = ph.GetOldest();
             
             Assert.AreEqual(2, oldest.Count);
-            var result = oldest.Where(person => person.Id == 404 || person.Id == 468).ToList();
-
+            var result = oldest.Where(person => person.Id == 205 || person.Id == 402).ToList();
             if (result.Count == 2) {
                 Assert.True(true);
             } else {
