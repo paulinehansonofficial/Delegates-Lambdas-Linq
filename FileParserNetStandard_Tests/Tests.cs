@@ -7,12 +7,12 @@ namespace FileParserNetStandard_Tests {
     [TestFixture]
     public class Tests {
         private FileHandler _fh;
-        private DataParser _dp;
-        private string _csvPath = "/Users/anguyen/Documents/Rider/data.csv";  // change to appropriate path
-        private string _tsvPath = "/Users/anguyen/Documents/Rider/data.tsv";  // change to appropriate path
+        private DataParser _dp; 
+        private string _csvPath = "C:/Users/Michelle/Projects/Dip-Seminar-Delegates-Lambda-Linq_Exercises/data.csv";  // change to appropriate path
+        private string _tsvPath = "C:/Users/Michelle/Projects/Dip-Seminar-Delegates-Lambda-Linq_Exercises/data.tsv";  // change to appropriate path
 
-        private string _writeFile = "/Users/anguyen/Documents/Rider/dataWrite.txt";  // change to appropriate path
-       
+        private string _writeFile = "C:/Users/Michelle/Projects/Dip-Seminar-Delegates-Lambda-Linq_Exercises/test.txt";  // change to appropriate path
+
         private List<List<string>> _data;
 
         [SetUp]
@@ -27,7 +27,7 @@ namespace FileParserNetStandard_Tests {
             _data.Add(new List<string>() {"3", "Jill", "Rhodes"});
             _data.Add(new List<string>() {"4", "Bill", "Holmes"});
             _data.Add(new List<string>() {"5", "Peter", "Watson"});
-            _data.Add(new List<string>() {"6", "Ophelia", "Turing"});
+            _data.Add(new List<string>() {"\"6", "Ophelia\"", "\"Turing\""});
             _data.Add(new List<string>() {"7", "Catherine", "Clark"});
             _data.Add(new List<string>() {" 8", "    Wilfred     ", "Sutherland "});
             _data.Add(new List<string>() {"9", "Rickgard", "Arthurs"});
@@ -88,6 +88,7 @@ namespace FileParserNetStandard_Tests {
         [Test]
         public void StripWhiteSpaceTest() {
             var list = _dp.StripWhiteSpace(_data);
+            Console.WriteLine(list[0][0]);
 
             Assert.AreEqual("8", list[7][0]); 
             Assert.AreEqual("Wilfred", list[7][1]);

@@ -15,8 +15,10 @@ namespace Delegate_Exercise {
         /// <param name="writeFile"></param>
         /// <param name="dataHandler"></param>
         public void ProcessCsv(string readFile, string writeFile, Func<List<List<string>>, List<List<string>>> dataHandler) {
-
-
+            FileHandler fh = new FileHandler();
+            List<string> rawFile = fh.ReadFile(readFile);
+            List<List<string>> parsedFile = fh.ParseData(rawFile, ',');
+            fh.WriteFile(writeFile, ',', dataHandler(parsedFile));
         }
         
     }

@@ -7,7 +7,12 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace FileParserNetStandard {
     
-    public class Person { }  // temp class delete this when Person is referenced from dll
+    public class Person {
+        public string FirstName { get; set; }
+        public int Id { get; set; }
+        public string Surname { get; set; }
+
+    }  // temp class delete this when Person is referenced from dll
     
     public class PersonHandler {
         public List<Person> People;
@@ -17,7 +22,7 @@ namespace FileParserNetStandard {
         /// </summary>
         /// <param name="people"></param>
         public PersonHandler(List<List<string>> people) {
-        
+         
         }
 
         /// <summary>
