@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using ObjectLibrary;
 using System.Data;
 using System.Linq;
+using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
 
 namespace FileParserNetStandard {
     
-    public class Person {
-        public string FirstName { get; set; }
-        public int Id { get; set; }
-        public string Surname { get; set; }
-
-    }  // temp class delete this when Person is referenced from dll
-    
+   
     public class PersonHandler {
         public List<Person> People;
 
@@ -22,7 +18,24 @@ namespace FileParserNetStandard {
         /// </summary>
         /// <param name="people"></param>
         public PersonHandler(List<List<string>> people) {
-         
+            People = new List<Person>();
+
+            // for each row, add these indexes to People (list)
+            // before adding the 3rd index, we need to convert it from a string to a long,
+            // once it is a long, it should be able to convert to a datetime easily,
+
+            foreach (List<string> p in people.Skip(1))
+            {
+                long l1 = long.Parse(p[3]);
+                DateTime date = new DateTime(l1);
+
+                People.Add(new Person(
+                    Int32.Parse(p[0]),
+                    p[1],
+                    p[2],
+                    date                    
+                    ));
+            }        
         }
 
         /// <summary>
@@ -30,8 +43,9 @@ namespace FileParserNetStandard {
         /// </summary>
         /// <returns></returns>
         public List<Person> GetOldest() {
-            
-            return new List<Person>(); //-- return result here
+
+            DateTime oldest = People.Select(p => p.Dob).Min();
+            return People.Where(p => p.Dob == oldest).ToList();
         }
 
         /// <summary>
@@ -40,12 +54,11 @@ namespace FileParserNetStandard {
         /// <param name="id"></param>
         /// <returns></returns>
         public string GetString(int id) {
-
-            return "result";  //-- return result here
+            return People.Find(p => p.Id == id).ToString();
         }
 
         public List<Person> GetOrderBySurname() {
-            return new List<Person>();  //-- return result here
+            return People.OrderBy(p => p.Surname).ToList();
         }
 
         /// <summary>
@@ -55,8 +68,9 @@ namespace FileParserNetStandard {
         /// <param name="caseSensitive"></param>
         /// <returns></returns>
         public int GetNumSurnameBegins(string searchTerm, bool caseSensitive) {
-
-            return 0;  //-- return result here
+            return People.Select(p => p.Surname)
+                .Where(s => s.StartsWith(searchTerm, !caseSensitive, null))
+                .Count();
         }
         
         /// <summary>
@@ -65,6 +79,10 @@ namespace FileParserNetStandard {
         /// <returns></returns>
         public List<string> GetAmountBornOnEachDate() {
             List<string> result = new List<string>();
+
+            People.OrderBy(p => p.Dob)
+                .GroupBy(d => d.Dob).ToList()
+                .ForEach(i => result.Add($"{i.Key}\t{i.Count()}"));
 
             return result;  //-- return result here
         }

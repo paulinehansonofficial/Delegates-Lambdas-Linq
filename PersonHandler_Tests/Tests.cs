@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ObjectLibrary;
 using FileParserNetStandard;
 using NUnit.Framework;
 
@@ -10,7 +11,7 @@ namespace PersonHandler_Tests {
         private FileHandler _fh;
         private DataParser _dp;
 
-        private string csvPath = "/users/anguyen/Documents/Rider/processed_data.csv"; // change to appropriate path
+        private string csvPath = "C:/Users/Michelle/Projects/Dip-Seminar-Delegates-Lambda-Linq_Exercises/processed_data.csv"; // change to appropriate path
         private List<List<string>> data;
 
         private List<Person> people;

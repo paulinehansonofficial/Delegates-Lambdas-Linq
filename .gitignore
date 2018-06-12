@@ -67,3 +67,5 @@ _ReSharper.*
 !lib/*.xml
 !/packages/*/lib/*.dll
 !/packages/*/lib/*/*.dll
+
+.vs

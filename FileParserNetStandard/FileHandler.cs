@@ -45,7 +45,9 @@ namespace FileParserNetStandard{
             foreach (List<string> row in rows) {
 
                 for (int i = 0; i < row.Count-1; i++) {
+
                     delimitedRow += row[i] + delimeter;
+
                 }
 
                 delimitedRow += row[row.Count-1];
